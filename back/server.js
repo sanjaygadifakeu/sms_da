@@ -1,4 +1,3 @@
-require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -7,7 +6,7 @@ const multer = require('multer');
 const csv = require('csv-parser');
 const fs = require('fs');
 const path = require('path');
-const Student = require('./models/Student'); // Assuming you have a Student model
+const Student = require('./models/Student'); // Adjust path to your Student model
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -33,47 +32,64 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage });
+const upload = multer({ 
+  storage,
+  limits: { fileSize: 10 * 1024 * 1024 }, // Max file size 10MB
+  fileFilter: (req, file, cb) => {
+    if (!file.originalname.match(/\.(csv)$/)) {
+      return cb(new Error('Only CSV files are allowed'), false);
+    }
+    cb(null, true);
+  },
+});
 
 // Route for uploading CSV files and inserting data into MongoDB
 app.post('/upload', upload.single('file'), async (req, res) => {
-  if (!req.file) {
-    return res.status(400).send('No file uploaded');
-  }
+  try {
+    // Log file received by Multer
+    console.log('File received:', req.file);  // This will help to debug if the file is being received correctly
 
-  const results = [];
-  const filePath = path.join(__dirname, 'uploads', req.file.filename);
+    if (!req.file) {
+      console.error('No file uploaded');
+      return res.status(400).send('No file uploaded');
+    }
 
-  fs.createReadStream(filePath)
-    .pipe(csv())
-    .on('data', (data) => {
-      // Assuming CSV contains columns: name, age, grade
-      results.push({
-        name: data.name,
-        age: parseInt(data.age),
-        grade: data.grade,
+    const results = [];
+    const filePath = path.join(__dirname, 'uploads', req.file.filename); // Get the uploaded file path
+
+    // Log the file path for debugging
+    console.log('File path:', filePath);
+
+    fs.createReadStream(filePath)
+      .pipe(csv())  // Parse CSV file
+      .on('data', (data) => {
+        console.log('CSV Data:', data); // Log the data being parsed from CSV
+        results.push({
+          name: data.name,
+          age: parseInt(data.age),
+          grade: data.grade,
+        });
+      })
+      .on('end', async () => {
+        try {
+          await Student.insertMany(results); // Insert parsed data into MongoDB
+          res.status(200).send('CSV data uploaded and saved successfully');
+        } catch (err) {
+          console.error('Error saving data to MongoDB:', err);
+          res.status(500).send('Error saving data to MongoDB');
+        }
+      })
+      .on('error', (err) => {
+        console.error('Error processing CSV file:', err);
+        res.status(500).send('Error processing CSV file');
       });
-    })
-    .on('end', async () => {
-      try {
-        // Insert parsed data into MongoDB
-        await Student.insertMany(results);
-        res.status(200).send('CSV data uploaded and saved successfully');
-      } catch (err) {
-        console.error('Error saving data to MongoDB:', err);
-        res.status(500).send('Error saving data to MongoDB');
-      }
-    })
-    .on('error', (err) => {
-      console.error('Error processing CSV file:', err);
-      res.status(500).send('Error processing CSV file');
-    });
+  } catch (err) {
+    console.error('Error uploading file:', err);
+    res.status(500).send('Error uploading file');
+  }
 });
 
-// Import Routes
-const studentsRoute = require('./routes/students');
-app.use('/students', studentsRoute);
-
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

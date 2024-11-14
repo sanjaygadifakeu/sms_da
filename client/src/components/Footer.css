@@ -1,0 +1,27 @@
+/* Netflix-Inspired Footer */
+.app-footer {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--netflix-dark); /* Netflix dark color */
+    color: var(--netflix-white); /* Netflix white for text */
+    font-size: 1rem;
+    border-radius: 8px;
+    margin-top: auto;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .app-footer p {
+    margin: 0;
+    font-weight: 300;
+    color: var(--netflix-light-gray); /* Light gray text */
+  }
+  
+  .app-footer p a {
+    color: var(--netflix-red); /* Netflix red for links */
+    text-decoration: none;
+  }
+  
+  .app-footer p a:hover {
+    text-decoration: underline;
+  }
+  

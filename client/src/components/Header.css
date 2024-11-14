@@ -1,0 +1,46 @@
+/* Netflix-Inspired Colors */
+:root {
+    --netflix-red: #e50914;
+    --netflix-dark: #141414;
+    --netflix-gray: #333333;
+    --netflix-light-gray: #b3b3b3;
+    --netflix-white: #ffffff;
+  }
+  
+  /* Header */
+  .app-header {
+    text-align: center;
+    padding: 1rem;
+    background: linear-gradient(90deg, var(--netflix-red), var(--netflix-dark));
+    color: var(--netflix-white);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .app-header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    animation: fadeInDown 1s ease;
+    color: var(--netflix-white);
+  }
+  
+  .app-header p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--netflix-light-gray);
+  }
+  
+  /* Keyframe Animation */
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

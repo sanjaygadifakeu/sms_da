@@ -1,0 +1,39 @@
+/* App.css */
+:root {
+  --netflix-red: #e50914;
+  --netflix-dark: #141414;
+  --netflix-light-gray: #b3b3b3;
+  --netflix-white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+body, html, #root {
+  height: 100%;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0f8ff, #d9efff);
+  padding: 1.5rem;
+}
+
+.main-content {
+  flex: 1;
+}
+
+button {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  opacity: 0.9;
+}

@@ -1,0 +1,18 @@
+.student-stats {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(135deg, #e50914, #141414); /* Netflix red to dark */
+    color: #ffffff; /* White text */
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Darker shadow for a sleek effect */
+    transition: transform 0.3s ease;
+  }
+  
+  .student-stats:hover {
+    transform: scale(1.02); /* Slight zoom effect */
+  }
+  

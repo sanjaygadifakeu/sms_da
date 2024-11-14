@@ -1,0 +1,44 @@
+.student-form {
+    display: flex;
+    flex-direction: column; /* Stack inputs vertically */
+    gap: 1rem;
+    margin-bottom: 2rem;
+    background-color: #141414; /* Dark background for the form */
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Darker shadow for depth */
+  }
+  
+  .student-form input {
+    padding: 0.8rem;
+    border: 1px solid #333; /* Dark border for input fields */
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    background-color: #222; /* Dark background for input fields */
+    color: #ffffff; /* White text for input fields */
+    width: 100%; /* Full width for each input */
+  }
+  
+  .student-form input:focus {
+    border-color: #e50914; /* Netflix red on focus */
+    outline: none;
+  }
+  
+  .student-form button {
+    padding: 0.8rem 1.5rem;
+    background-color: #e50914; /* Netflix red */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Darker shadow for buttons */
+    transition: background-color 0.3s ease;
+    width: 100%; /* Full width for button */
+  }
+  
+  .student-form button:hover {
+    background-color: #f40612; /* Slightly darker red on hover */
+  }
+  

@@ -1,0 +1,30 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+    background-color: var(--netflix-dark);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .navbar li {
+    font-size: 1.2rem;
+  }
+  
+  .navbar a {
+    color: var(--netflix-white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar a:hover {
+    color: var(--netflix-red);
+  }
+  

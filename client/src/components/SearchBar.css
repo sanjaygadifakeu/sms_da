@@ -1,14 +1,16 @@
 .search-bar {
-    width: 100%;
+    width: 60%; /* Reduced width for a more compact design */
     padding: 0.8rem;
     margin-bottom: 2rem;
-    font-size: 1.1rem;
+    font-size: 1rem; /* Slightly smaller font size */
     border: 2px solid var(--netflix-dark); /* Dark Netflix color */
     border-radius: 8px;
     background-color: #141414; /* Netflix dark background */
     color: var(--netflix-white); /* Netflix white text */
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    margin-left: auto;
+    margin-right: auto; /* Center the search bar */
 }
 
 .search-bar:focus {

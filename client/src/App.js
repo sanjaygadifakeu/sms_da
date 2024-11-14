@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Header from './components/Header';
 import StudentForm from './components/StudentForm';
 import StudentList from './components/StudentList';
-import StudentStats from './components/StudentStats';
+//import StudentStats from './components/StudentStats';
 import Searchbar from './components/Searchbar';
 import Footer from './components/Footer';
+import Faculty from './components/Faculty'; // Import the Faculty page
+import BulkUpload from './components/BulkUpload'; // Import the BulkUpload page
 import './App.css';
-import Navbar from './components/Navbar';
-
 
 const App = () => {
   const [students, setStudents] = useState([]);
@@ -49,19 +50,43 @@ const App = () => {
   );
 
   return (
-    <div className="app-container">
-      <Header />
-      
-      <Searchbar setSearchQuery={setSearchQuery} />
-      <StudentForm addStudent={addStudent} editingStudent={editingStudent} />
-      <StudentStats students={students} />
-      <StudentList
-        students={filteredStudents}
-        editStudent={editStudent}
-        deleteStudent={deleteStudent}
-      />
-      <Footer />
-    </div>
+    <Router>
+      <div className="app-container">
+        <Header />
+
+        {/* Navbar */}
+        <nav className="navbar">
+          <Link to="/">Home</Link>
+          <Link to="/faculty">Faculty</Link>
+          <Link to="/bulk-upload">Bulk Upload</Link>
+        </nav>
+
+        {/* Routes */}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Searchbar setSearchQuery={setSearchQuery} />
+                <StudentForm addStudent={addStudent} editingStudent={editingStudent} />
+                
+                
+
+                <StudentList
+                  students={filteredStudents}
+                  editStudent={editStudent}
+                  deleteStudent={deleteStudent}
+                />
+              </>
+            }
+          />
+          <Route path="/faculty" element={<Faculty />} />
+          <Route path="/bulk-upload" element={<BulkUpload />} />
+        </Routes>
+
+        <Footer />
+      </div>
+    </Router>
   );
 };
 

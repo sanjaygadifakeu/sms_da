@@ -1,0 +1,62 @@
+/* Netflix-Inspired Colors */
+:root {
+    --netflix-red: #e50914;
+    --netflix-dark: #141414;
+    --netflix-gray: #333333;
+    --netflix-light-gray: #b3b3b3;
+    --netflix-white: #ffffff;
+}
+
+/* Faculty Form */
+.faculty-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--netflix-dark);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: var(--netflix-white);
+}
+
+.faculty-form input {
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    border: 1px solid var(--netflix-gray);
+    border-radius: 4px;
+    background-color: var(--netflix-gray);
+    color: var(--netflix-white);
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.faculty-form input::placeholder {
+    color: var(--netflix-light-gray);
+}
+
+.faculty-form input:focus {
+    border-color: var(--netflix-red);
+    outline: none;
+}
+
+.faculty-form button {
+    padding: 0.8rem;
+    background-color: var(--netflix-red);
+    color: var(--netflix-white);
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.faculty-form button:hover {
+    background-color: #b00610;
+}
+
+.faculty-form button:active {
+    background-color: #7f040b;
+}
